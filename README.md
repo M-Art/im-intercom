@@ -21,7 +21,7 @@ You can add callback to buttons with
 Where callbacks are parameterless functions.
 To print line on LCD use
 
-   lcd.println(num, "text")
+    lcd.println(num, "text")
 
 where num is 0 or 1
     
