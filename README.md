@@ -19,7 +19,7 @@ You can add callback to buttons with
     buttons.set_enter_button_callback(callback_enter)
 
 where callbacks are parameterless functions. You can set callbacks before init drivers.
-To print line on LCD use
+To print line on the LCD use
 
     lcd.println(num, "text")
 

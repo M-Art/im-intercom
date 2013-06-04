@@ -22,8 +22,9 @@ LCD_LINE_2 = 0xC0 # LCD RAM adres dla 2 linii
 E_PULSE = 0.00005
 E_DELAY = 0.00005
  
-########## Funkcja główna programu
 def init():
+	""" Init drivers
+	"""
 	GPIO.setmode(GPIO.BCM) 
 	GPIO.setup(LCD_E, GPIO.OUT)  # E
 	GPIO.setup(LCD_RS, GPIO.OUT) # RS
@@ -41,7 +42,7 @@ def init():
 	println(1, "kotek :)")
 
 def println(line, string):
-	"""Prints line on LCD
+	"""Prints line on the LCD
 
 	line - number of line (0 or 1)
 	string - string to display (more than 16 characters will be trimmed)
