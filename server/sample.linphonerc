@@ -1,0 +1,13 @@
+[auth_info_0]
+username=<Username>
+userid=<Authentication Username>
+passwd=<SIP Password>
+realm="jnctn.net"
+
+[proxy_0]
+reg_proxy=sip:sip.onsip.com
+reg_identity=sip:<SIP Address>
+reg_expires=3600
+reg_sendregister=1
+publish=0
+dial_escape_plus=0
