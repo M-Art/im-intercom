@@ -94,7 +94,10 @@ def init():
     buttons.set_enter_btn_callback(call_button)
 
     linphone.init()
-    atexit.register(lambda: linphone.unregister(), linphone.exit())
+    def linphone_atexit():
+        linphone.unregister()
+        linphone.exit()
+    atexit.register(linphone_atexit)
 
 def main():
     init()
