@@ -61,7 +61,7 @@ def is_registered():
     else:
         return False
 
-def call(address, host = "sip.linphone.org"):
+def call(address):
     """Makes a call.
 
     Return true if call succeeded, false otherwise.
