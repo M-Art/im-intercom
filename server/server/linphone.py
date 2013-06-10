@@ -80,7 +80,16 @@ def call(address):
             return True
         elif re.search("dialing", ret):
             pass
-    
+
+def is_in_call():
+    ret = subprocess.check_output(["linphonecsh", "status", "hook"])
+    if re.search("offhook", ret):
+        return False
+    elif re.search("^Call out", ret):
+        return True
+    elif re.search("dialing", ret):
+        return True
+
 def unregister():
     """Unregister user.
     """

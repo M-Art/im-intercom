@@ -1,3 +1,5 @@
+import RPi.GPIO
+import atexit
 import cherrypy
 import time
 
@@ -5,9 +7,9 @@ import buttons
 import lcd
 import linphone
 
-registered = {}
-current_position = 0
 busy = False
+current_position = 0
+registered = {}
 
 class IntercomServer(object):
     @cherrypy.expose
@@ -39,28 +41,44 @@ def next_button():
 
 def call_button():
     global registered, current_position, busy
-    busy = True
-    keys = registered.keys()
-    l = len(keys)
-    address = registered[keys[current_position % l]]
-    success = linphone.call(address)
-    if success:
-        # TODO:
-        pass
-    else:
-        busy = False
-        lcd.println(0, "Call failed.")
-        time.sleep(2)
+    l = len(registered)
+    if not busy and l != 0:
+        # lock buttons
+        busy = True
+
+        # get address
+        keys = registered.keys().sort()
+        address = registered[keys[current_position % l]]
+
+        # call
+        lcd.println(0, "Calling...")
+        success = linphone.call(address)
+        if success:
+            # wait for the call to end
+            lcd.println(0, "Call in progress.")
+            while linphone.is_in_call():
+                time.sleep(0.5)
+        else:
+            # print info
+            lcd.println(0, "Call failed.")
+            time.sleep(2)
+
+        # refresh screen and unlock buttons
         lcd_refresh()
+        busy = False
 
 def lcd_refresh():
     global registered, current_position
+    
+    # print first line
     lcd.println(0, "Choose:")
+
+    # print second line
     l = len(registered)
     if l == 0:
         lcd.println(1, "--")
     else:
-        keys = registered.keys()
+        keys = registered.keys().sort()
         name = keys[current_position % l]
         lcd.println(1, name)
 
@@ -75,6 +93,9 @@ def init():
     buttons.set_down_btn_callback(prev_button)
     buttons.set_enter_btn_callback(call_button)
 
-if __name__ == "__main__":
+    linphone.init()
+    atexit.register(lambda: linphone.unregister(), linphone.exit())
+
+def main():
     init()
     cherrypy.quickstart(IntercomServer())
