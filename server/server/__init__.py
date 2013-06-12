@@ -47,7 +47,8 @@ def call_button():
         busy = True
 
         # get address
-        keys = registered.keys().sort()
+        keys = registered.keys()
+        keys.sort()
         address = registered[keys[current_position % l]]
 
         # call
@@ -78,7 +79,8 @@ def lcd_refresh():
     if l == 0:
         lcd.println(1, "--")
     else:
-        keys = registered.keys().sort()
+        keys = registered.keys()
+        keys.sort()
         name = keys[current_position % l]
         lcd.println(1, name)
 
@@ -101,4 +103,5 @@ def init():
 
 def main():
     init()
+    cherrypy.config.update({ 'server.socket_host': '0.0.0.0' })
     cherrypy.quickstart(IntercomServer())
