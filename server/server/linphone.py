@@ -12,13 +12,18 @@ class LinphoneError(Exception):
     def __str__(self):
         return self.message
 
-def init():
+def init(config_path = None):
     """Initialize linphonecsh subprocess.
 
     If .linphonerc exists, tries to register on saved servers.
     May throw LinphoneError.
     """
-    ret = subprocess.check_output(["linphonecsh", "init"])
+    if config_path is not None:
+        args = ["linphonecsh", "init", "-c", config_path]
+    else:
+        args = ["linphonecsh", "init"]
+
+    ret = subprocess.check_output(args)
     if ret != "" and not re.search("A running linphonec has been found", ret):
         raise LinphoneError("Init failed: " + ret)
     
@@ -66,7 +71,7 @@ def call(address):
 
     Return true if call succeeded, false otherwise.
     """
-    subprocess.call(["linphonecsh", "generic", '"call ' + address + '"'])
+    subprocess.call(["linphonecsh", "generic", "call " + address])
     
     count = 0
     ret = subprocess.check_output(["linphonecsh", "status", "hook"])

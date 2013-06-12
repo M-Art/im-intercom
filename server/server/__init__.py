@@ -95,7 +95,7 @@ def init():
     buttons.set_down_btn_callback(prev_button)
     buttons.set_enter_btn_callback(call_button)
 
-    linphone.init()
+    linphone.init('/home/mateusz/.linphonerc')
     def linphone_atexit():
         linphone.unregister()
         linphone.exit()
