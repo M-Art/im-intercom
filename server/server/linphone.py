@@ -28,7 +28,7 @@ def init():
         time.sleep(0.1)
         count += 1
         exit_code = subprocess.call(["linphonecsh", "status", "hook"])
-    if exit_code != 255:
+    if exit_code == 255:
         raise LinphoneError("Init failed: timeout")
 
 def register(username, password, host):
@@ -56,7 +56,7 @@ def is_registered():
     except subprocess.CalledProcessError:
         return False
 
-    if "registered" in ret:
+    if "identity=" in ret:
         return True
     else:
         return False

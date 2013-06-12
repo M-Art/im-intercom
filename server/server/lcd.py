@@ -91,7 +91,7 @@ def __lcd_byte(bits, mode):
  
     # Przełączenie pinu 6E
     time.sleep(E_DELAY)    
-        GPIO.output(LCD_E, True)  
+    GPIO.output(LCD_E, True)  
     time.sleep(E_PULSE)
     GPIO.output(LCD_E, False)  
     time.sleep(E_DELAY)
