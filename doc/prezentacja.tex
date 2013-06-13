@@ -1,4 +1,4 @@
-% Created 2013-06-13 czw 18:12
+% Created 2013-06-13 czw 18:15
 \documentclass[presentation, 10pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[utf8]{inputenc}
@@ -73,15 +73,15 @@ poprzez linie cyfrowe. System będzie się składał z dwóch elementów:
 \section{Koncept}
 \label{sec-2}
 \begin{frame}
-\frametitle{Koncpet}
+\frametitle{Koncept}
 \label{sec-2-1}
 
   \begin{tikzpicture}[scale=1.4]
     \tikzstyle{elem} = [ultra thick, rounded corners, rectangle, draw=blue!80, scale = 1.5, inner sep = 0.5cm]
     \tikzstyle{sip} = [ultra thick, rounded corners, rectangle, draw=orange!80, scale = 1.5, inner sep = 0.5cm]
   
-    \node[elem] (rpi) at (6, 0) {Model};
-    \node[elem] (pc) at (0, 0) {Widok};
+    \node[elem] (rpi) at (6, 0) {Domofon};
+    \node[elem] (pc) at (0, 0) {Klient};
     \node[sip] (sip) at (3, 3) {Serwer SIP};
   
     \foreach \from/\to in {rpi/pc, rpi/sip, pc/sip}
@@ -97,7 +97,7 @@ poprzez linie cyfrowe. System będzie się składał z dwóch elementów:
 \begin{itemize}
 \item Raspberry Pi, wersja B
 \item no-name mikrofon
-\item no-name karta dźwiękowa
+\item no-name karta dźwiękowa USB
 \item głośniki
 \item wyświetlacz LCD 16 \texttimes{} 2
 \item 3 przyciski
