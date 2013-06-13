@@ -58,8 +58,8 @@ def is_registered():
     """
     try:
         ret = subprocess.check_output(["linphonecsh", "status", "register"])
-    except subprocess.CalledProcessError:
-        return False
+    except subprocess.CalledProcessError as e:
+        ret = e.output
 
     if "identity=" in ret:
         return True
