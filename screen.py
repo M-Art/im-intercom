@@ -18,7 +18,7 @@ class LoginScreen(GridLayout):
      def zaloguj_callback(self, instance):
          if self.adres.text and self.nazwa.text:
              a = 'http://' + self.adres.text + '/login'
-       params = urllib.urlencode({'@name': self.nazwa.text, '@adres': self.adres.text})
+             params = urllib.urlencode({'@name': self.nazwa.text, '@adres': self.adres.text})
 	     req = UrlRequest(a,  req_body=params)
 
      def wyloguj_callback(self, instance):
