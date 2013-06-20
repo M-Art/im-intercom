@@ -15,52 +15,52 @@ from kivy.core.audio import SoundLoader
 
 class LoginScreen(GridLayout):
 
-     def zaloguj_callback(self, instance):
-         if self.adres.text and self.nazwa.text:
-             a = 'http://' + self.adres.text + '/login'
-             params = urllib.urlencode({'@name': self.nazwa.text, '@adres': self.adres.text})
-	     req = UrlRequest(a,  req_body=params)
+    def zaloguj_callback(self, instance):
+        if self.adres.text and self.nazwa.text:
+            a = 'http://' + self.adres.text + '/login'
+            params = urllib.urlencode({'name': self.nazwa.text, 'address': self.adres.text})
+            req = UrlRequest(a,  req_body=params)
 
-     def wyloguj_callback(self, instance):
-         a = 'http://' + self.adres.text + '/logout'
-         params = urllib.urlencode({'@name': self.nazwa.text, '@adres': self.adres.text})
-	 req = UrlRequest(a, req_body=params)
+    def wyloguj_callback(self, instance):
+        a = 'http://' + self.adres.text + '/logout'
+        params = urllib.urlencode({'name': self.nazwa.text, 'address': self.adres.text})
+        req = UrlRequest(a, req_body=params)
 
 
-     def __init__(self, **kwargs):
-         super(LoginScreen, self).__init__(**kwargs)
-         self.cols = 2
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.cols = 2
 
-         self.add_widget(Label(text='Nazwa'))
+        self.add_widget(Label(text='Nazwa'))
 
-         self.nazwa = TextInput(multiline=False, font_size=40)
-         self.add_widget(self.nazwa)
+        self.nazwa = TextInput(multiline=False, font_size=40)
+        self.add_widget(self.nazwa)
 
-         self.add_widget(Label(text='Adres'))
+        self.add_widget(Label(text='Adres'))
 
-         self.adres = TextInput(multiline=False, font_size=40)
-         self.add_widget(self.adres)
+        self.adres = TextInput(multiline=False, font_size=40)
+        self.add_widget(self.adres)
 
-	 self.add_widget(Label(text='Adres domofonu'))
+        self.add_widget(Label(text='Adres domofonu'))
 
-	 self.adres_domofonu = TextInput(multiline=False, font_size=40)
-	 self.add_widget(self.adres_domofonu)
+        self.adres_domofonu = TextInput(multiline=False, font_size=40)
+        self.add_widget(self.adres_domofonu)
 
-	 self.zaloguj_button = Button(text='Zaloguj')
-         self.zaloguj_button.bind(on_press=self.zaloguj_callback)
-	 self.add_widget(self.zaloguj_button)
+        self.zaloguj_button = Button(text='Zaloguj')
+        self.zaloguj_button.bind(on_press=self.zaloguj_callback)
+        self.add_widget(self.zaloguj_button)
 
-	 self.wyloguj_button = Button(text='Wyloguj')
-         self.wyloguj_button.bind(on_press=self.wyloguj_callback)
-	 self.add_widget(self.wyloguj_button)
+        self.wyloguj_button = Button(text='Wyloguj')
+        self.wyloguj_button.bind(on_press=self.wyloguj_callback)
+        self.add_widget(self.wyloguj_button)
 
 
 
 class MyApp(App):
 
-     def build(self):
-         return LoginScreen()
+    def build(self):
+        return LoginScreen()
 
 
 if __name__ == '__main__':
-     MyApp().run()
+    MyApp().run()
