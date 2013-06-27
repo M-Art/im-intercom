@@ -108,3 +108,4 @@ def __check_output(args):
         ret = subprocess.check_output(args)
     except subprocess.CalledProcessError as e:
         ret = e.output
+    return ret
