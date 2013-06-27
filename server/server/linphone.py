@@ -85,6 +85,8 @@ def call(address):
             return True
         elif re.search("dialing", ret):
             pass
+        elif re.search("ringing", ret):
+            pass
 
 def is_in_call():
     ret = subprocess.check_output(["linphonecsh", "status", "hook"])
