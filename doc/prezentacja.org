@@ -29,14 +29,11 @@
 
 * Wstęp
 ** Opis zadania
-Celem projektu jest zbudowanie bezprzewodowego domofonu z wykorzystaniem wbudowanej
-platformy komputerowej SoC (np. Zedboard lub Raspberry Pi) opartej na systemie Linux. Karta
-wyposażona jest w port wejścia/wyjścia umożliwiający pobieranie oraz wysyłanie informacji
-poprzez linie cyfrowe. System będzie się składał z dwóch elementów:
-+ "panel zewnętrznego" składający się z platformy SoC wyposażony w moduł komunikacji
-  poprzez sieć bezprzewodową, zestaw przycisków i kontrolek LED,
-+ "panel wewnętrzny" składający się z komputera (lub np. kolejnej platformy SoC) z
-  zestawem przycisków oraz system sygnalizacji dźwiękowej.
+Celem projektu jest zbudowanie bezprzewodowego domofonu z wykorzystaniem wbudowanej platformy komputerowej SoC (np. Zedboard lub Raspberry Pi) opartej na systemie Linux. 
+Karta wyposażona jest w port wejścia/wyjścia umożliwiający pobieranie oraz wysyłanie informacji poprzez linie cyfrowe.
+System będzie się składał z dwóch elementów:
++ *panelu zewnętrznego* składającego się z platformy SoC wyposażonej w moduł komunikacji poprzez sieć bezprzewodową, zestaw przycisków i kontrolek LED,
++ *panelu wewnętrznego* składającego się z komputera (lub np. kolejnej platformy SoC) z zestawem przycisków oraz system sygnalizacji dźwiękowej.
 
 * Koncept
 ** Koncept

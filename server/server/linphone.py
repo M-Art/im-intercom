@@ -23,7 +23,7 @@ def init(config_path = None):
     else:
         args = ["linphonecsh", "init"]
 
-    ret = subprocess.check_output(args)
+    ret = __check_output(args)
     if ret != "" and not re.search("A running linphonec has been found", ret):
         raise LinphoneError("Init failed: " + ret)
     
@@ -56,11 +56,7 @@ def register(username, password, host):
 def is_registered():
     """Check if user is registered.
     """
-    try:
-        ret = subprocess.check_output(["linphonecsh", "status", "register"])
-    except subprocess.CalledProcessError as e:
-        ret = e.output
-
+    ret = __check_output(["linphonecsh", "status", "register"])
     if "identity=" in ret:
         return True
     else:
@@ -74,20 +70,22 @@ def call(address):
     subprocess.call(["linphonecsh", "generic", "call " + address])
     
     count = 0
-    ret = subprocess.check_output(["linphonecsh", "status", "hook"])
+    ret = __check_output(["linphonecsh", "status", "hook"])
     while count < 50:
         time.sleep(1)
         count += 1
-        ret = subprocess.check_output(["linphonecsh", "status", "hook"])
+        ret = __check_output(["linphonecsh", "status", "hook"])
         if re.search("offhook", ret):
             return False
         elif re.search("^Call out", ret):
             return True
         elif re.search("dialing", ret):
             pass
+        elif re.search("ringing", ret):
+            pass
 
 def is_in_call():
-    ret = subprocess.check_output(["linphonecsh", "status", "hook"])
+    ret = __check_output(["linphonecsh", "status", "hook"])
     if re.search("offhook", ret):
         return False
     elif re.search("^Call out", ret):
@@ -104,3 +102,10 @@ def exit():
     """Exit linphone.
     """
     subprocess.call(["linphonecsh", "exit"])
+
+def __check_output(args):
+    try:
+        ret = subprocess.check_output(args)
+    except subprocess.CalledProcessError as e:
+        ret = e.output
+    return ret

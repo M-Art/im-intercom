@@ -17,14 +17,20 @@ class LoginScreen(GridLayout):
 
     def zaloguj_callback(self, instance):
         if self.adres.text and self.nazwa.text:
-            a = 'http://' + self.adres.text + '/login'
+            a = 'http://' + self.adres_domofonu.text + '/login'
             params = urllib.urlencode({'name': self.nazwa.text, 'address': self.adres.text})
-            req = UrlRequest(a,  req_body=params)
+            try:
+                urllib.urlopen(a, data = params)
+            except:
+                pass
 
     def wyloguj_callback(self, instance):
-        a = 'http://' + self.adres.text + '/logout'
+        a = 'http://' + self.adres_domofonu.text + '/logout'
         params = urllib.urlencode({'name': self.nazwa.text, 'address': self.adres.text})
-        req = UrlRequest(a, req_body=params)
+        try:
+            urllib.urlopen(a, data = params)
+        except:
+            pass
 
 
     def __init__(self, **kwargs):
