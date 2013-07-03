@@ -92,6 +92,10 @@ def is_in_call():
         return True
     elif re.search("dialing", ret):
         return True
+    elif re.search("ringing", ret):
+        return True
+    else:
+        return False
 
 def unregister():
     """Unregister user.
